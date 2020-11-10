@@ -1,0 +1,9 @@
+node_modules
+vendor
+_dokumentumok
+.DS_Store
+package.json.save
+package.json.save2
+config/config.php
+config/database.php
+config/mail.php
