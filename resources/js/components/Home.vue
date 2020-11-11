@@ -21,7 +21,7 @@
               </div>
             </div>
             <div class="row mt-3">
-              <div v-for="user in users" :key="user.id" class="col-12 col-md-4 mt-4">
+              <div v-for="user in users" :key="user.id" v-if="user.role_id != 1" class="col-12 col-md-4 mt-4">
                 <div class="col-12 user-wrapper py-3">
                   <p>Name: {{user.name}}</p>
                   <p>Id: {{user.id}}</p>
