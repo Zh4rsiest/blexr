@@ -35,7 +35,7 @@ class User extends BaseModel {
     $length = isset($user->password_length) ? $user->password_length : self::PASSWORD_LENGTH;
     $password = $this->generateRandomPassword($length);
 
-    $subject = "Your new account is ready " . $args->to_name;
+    $subject = "Your new account is ready " . $user->name;
     $body = "
       <h3>Dear " . $user->name . ",</h3>
       <p>
