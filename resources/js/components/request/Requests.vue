@@ -85,9 +85,9 @@
               this.employees.push(request.employee.name);
             }
           });
-        } else {
-          this.$toastr.e('Couldn\'t fetch requests');
         }
+      }).catch(() => {
+        this.$toastr.e('Couldn\'t fetch requests');
       });
     },
     methods: {
