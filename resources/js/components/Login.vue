@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row d-flex justify-content-center">
       <div class="col-6">
-        <form id="loginForm">
+        <form id="loginForm" class="position-relative">
           <div class="form-group">
             <label for="email">Email</label>
             <input id="email" type="text" class="form-control" name="email" placeholder="username@domain.com">
@@ -14,6 +14,10 @@
           </div>
 
           <button @click="login" type="submit" class="btn btn-primary">Login</button>
+
+          <div v-if="loading" class="loader-wrapper">
+            <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          </div>
         </form>
       </div>
     </div>
@@ -22,28 +26,27 @@
 
 <script>
   export default {
-    props: {
-      // user: Object
-    },
-    mounted() {
-      // if (this.$store.state.user !== false) {
-      //   this.$router.push('/');
-      // }
+    data() {
+      return {
+        loading: false,
+      }
     },
     methods: {
       login(e) {
         e.preventDefault();
         var formData = new FormData(document.getElementById("loginForm"));
+        this.loading = true;
 
         axios.post('login', formData)
         .then((response) => {
-          console.log(response);
           if (response.data.success) {
             this.$store.dispatch('fetchUser');
             window.location.href = "/";
           } else {
-            console.error('Couldn\'t log in');
+            this.$toastr.e('Couldn\'t log in');
           }
+
+          this.loading = false;
         });
       }
     }

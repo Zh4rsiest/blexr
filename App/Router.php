@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Auth;
+
 class Router {
   /**
    * An array that holds the available routes that can be accessed
@@ -25,7 +27,11 @@ class Router {
     // controller's and function's name and the type of the route.
     // The syntax for the controller's and function's name is "controller@function"
     // type can only be "get" and "post"
-    $this->routes[$args[0]] = ["controller_function" => $args[1], "type" => $name];
+    if (isset($args[2])) {
+      $this->routes[$args[0]] = ["controller_function" => $args[1], "type" => $name, "middleware" => $args[2]];
+    } else {
+      $this->routes[$args[0]] = ["controller_function" => $args[1], "type" => $name];
+    }
   }
 
   /**
@@ -50,6 +56,13 @@ class Router {
 
     // If the $uri route exists in the $routes array
     if (array_key_exists(rtrim($uri, "/"), $this->routes)) {
+      // Call the "middleware". If it has an "auth" then, then only let logged in users in
+      if (isset($this->routes[$uri]["middleware"]) && $this->routes[$uri]["middleware"] == "auth") {
+        if (!Auth::user()) {
+          throw new Exception("Unauthorized user");
+        }
+      }
+
       // If it's a post route, then ignore any routing and let the .htaccess
       // redirect to index.php
       if ($_SERVER["REQUEST_METHOD"] == "GET" && $this->routes[$uri]["type"] == "post") {

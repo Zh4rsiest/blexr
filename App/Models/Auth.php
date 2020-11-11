@@ -14,7 +14,9 @@ class Auth extends BaseModel {
    * @return mixed
    */
   public static function user($jsonEncoded = false) {
-    session_start();
+    if (session_status() == PHP_SESSION_NONE) {
+      session_start();
+    }
 
     if (isset($_SESSION["user"]) && $_SESSION["user"]->name != null) {
       if ($jsonEncoded)

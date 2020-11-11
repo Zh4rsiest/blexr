@@ -6,10 +6,12 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import axios from 'axios';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
+import VueToastr from "vue-toastr";
 
 window.axios = require('axios');
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+Vue.use(VueToastr);
 Vue.use(VueRouter);
 
 const home = Vue.component('home', require('./components/Home.vue').default);
@@ -32,9 +34,9 @@ const routes = [
 const router = new VueRouter({
   mode: 'history',
   routes
-})
+});
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
@@ -53,7 +55,7 @@ const store = new Vuex.Store({
       })
     },
   }
-})
+});
 
 router.beforeEach((to, from, next) => {
   if (window.user === false && store.state.user === false) {
@@ -68,7 +70,7 @@ router.beforeEach((to, from, next) => {
     store.dispatch('fetchUser');
     next();
   }
-})
+});
 
 const app = new Vue({
     el: '#app',

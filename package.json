@@ -1,13 +1,14 @@
 {
   "name": "blexr-test-task-boilerplate",
   "version": "1.0.0",
+  "author": {
+    "name": "Zsombor Balogh",
+    "email": "baloghzsombor94@gmail.com"
+  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development webpack-dev-server --progress --inline --hot",
-    "start:hotdev": "webpack-dev-server --hot",
-    "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules",
     "watch": "npm run dev -- --watch",
-    "dev": "webpack --mode development",
-    "build": "webpack --mode production"
+    "dev": "webpack --mode development --progress",
+    "build": "webpack --mode production --progress"
   },
   "devDependencies": {
     "@babel/cli": "^7.12.1",
@@ -48,6 +49,7 @@
     "lodash": "^4.17.20",
     "popper.js": "^1.16.1",
     "vue-router": "^3.4.9",
+    "vue-toastr": "^2.1.2",
     "vuejs-datepicker": "^1.6.2",
     "vuex": "^3.5.1"
   }

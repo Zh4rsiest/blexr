@@ -77,11 +77,11 @@
 
         axios.post('/request/add', formData)
         .then((response) => {
-          console.log(response.data);
           if (response.data.success) {
-            window.location.href = "/";
+            this.$toastr.s('Request sent');
+            // window.location.href = "/";
           } else {
-            console.error('There was an error when processing request');
+            this.$toastr.e('There was an error when processing request');
           }
         });
       }

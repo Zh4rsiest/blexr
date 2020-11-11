@@ -6,7 +6,7 @@
           <div class="card-header">Users</div>
 
           <div class="card-body">
-            <div v-if="selectedUser !== null" class="row">
+            <div v-if="selectedUser !== null" class="row position-relative">
               <div class="col-12">
                 <h5>User: {{selectedUser.name}}</h5>
                 <h5 class="mt-3">Onboarding Tasks Progression</h5>
@@ -14,7 +14,7 @@
                   <div v-for="(task, key) in selectedUser.tasks" class="col">
                     <div class="form-check">
                       <input @click="updateTask(selectedUser, key, $event)" type="checkbox" :model="parseInt(task)" :checked="parseInt(task)" class="form-check-input">
-                      <label :for="key" class="form-check-label">{{key}}</label>
+                      <label :for="key" class="form-check-label">{{titleCase(key.replace(/_/g, " ", ))}}</label>
                     </div>
                   </div>
                 </div>
@@ -29,6 +29,10 @@
                   <button @click="selectUser(user)" type="button" class="btn btn-secondary mt-2">Check user</button>
                 </div>
               </div>
+            </div>
+
+            <div v-if="loading" class="loader-wrapper">
+              <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
             </div>
           </div>
         </div>
@@ -69,6 +73,7 @@
   export default {
     data() {
       return {
+        loading: false,
         users: [],
         selectedUser: null,
         requests: [],
@@ -96,10 +101,16 @@
     },
     methods: {
       selectUser(user) {
+        this.loading = true;
+
         if (this.selectedUser != user) {
           axios.get(`/user/get_by_id?id=${user.id}`)
           .then((response) => {
             this.selectedUser = response.data;
+
+            setTimeout(() => {
+              this.loading = false;
+            }, 400);
           })
         }
       },
@@ -112,18 +123,27 @@
 
         axios.post('/user/update_task', data)
         .then((response) => {
-          console.log(response.data);
+          this.$toastr.s('Task updated');
         });
       },
       deleteRequest(request) {
         axios.post('/request/delete_by_id', {id: request.id})
         .then((response) => {
           if (response.data.success) {
+            this.$toastr.s('Request deleted');
             this.requests.splice(this.requests.indexOf(request), 1);
           } else {
-            console.error('Couldn\'t delete request');
+            this.$toastr.e('Couldn\'t delete request');
           }
         });
+      },
+      titleCase(str) {
+         var splitStr = str.toLowerCase().split(' ');
+         for (var i = 0; i < splitStr.length; i++) {
+             splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+         }
+         // Directly return the joined string
+         return splitStr.join(' ');
       }
     }
   }

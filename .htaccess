@@ -1,7 +1,7 @@
-Authtype Basic
-AuthName "Restricted area"
-AuthUserFile /var/www/blexr/.htpasswd
-Require valid-user
+#Authtype Basic
+#AuthName "Restricted area"
+#AuthUserFile /var/www/blexr/.htpasswd
+#Require valid-user
 
 # enable apache rewrite engine
 RewriteEngine on

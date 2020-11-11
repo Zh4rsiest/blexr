@@ -86,7 +86,7 @@
             }
           });
         } else {
-          console.error('Couldn\'t fetch requests');
+          this.$toastr.e('Couldn\'t fetch requests');
         }
       });
     },
@@ -101,13 +101,13 @@
           date: request.date,
           status : status
         }).then((response) => {
-          console.log(response.data);
+          this.loading = false;
+
           if (response.data.success) {
-            this.loading = false;
-            // Delete the processed request from the requests array
+            this.$toastr.s('Request processed');
             this.requests.splice(this.requests.indexOf(request), 1);
           } else {
-            console.error('There was an error when processing request');
+            this.$toastr.e('There was an error when processing request');
           }
         });
       }
