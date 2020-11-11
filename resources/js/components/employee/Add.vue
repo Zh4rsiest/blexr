@@ -57,13 +57,13 @@
 
         axios.post('/employee/add', formData)
         .then((response) => {
-          this.loading = false;
-
           if (response.data.success) {
             window.location.href = "/";
           } else {
             this.$toastr.e('Employee couldn\'t be added');
           }
+        }).finally(() => {
+          this.loading = false;
         });
       }
     }

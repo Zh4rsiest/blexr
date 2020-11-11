@@ -45,7 +45,7 @@
           } else {
             this.$toastr.e('Couldn\'t log in');
           }
-
+        }).finally(() => {
           this.loading = false;
         });
       }

@@ -115,11 +115,11 @@
           axios.get(`/user/get_by_id?id=${user.id}`)
           .then((response) => {
             this.selectedUser = response.data;
-
+          }).finally(() => {
             setTimeout(() => {
               this.loading = false;
             }, 400);
-          })
+          });
         }
       },
       updateTask(user, task, e) {

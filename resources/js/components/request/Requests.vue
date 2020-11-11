@@ -101,14 +101,14 @@
           date: request.date,
           status : status
         }).then((response) => {
-          this.loading = false;
-
           if (response.data.success) {
             this.$toastr.s('Request processed');
             this.requests.splice(this.requests.indexOf(request), 1);
           } else {
             this.$toastr.e('There was an error when processing request');
           }
+        }).finally(() => {
+          this.loading = false;
         });
       }
     }
