@@ -36,7 +36,7 @@ The `routes` folder only has a web.php file in it, which holds all the routes th
 Every route is routed to `index.php` where the `Router` class detemines what type of route it is and which `Controller`'s what method should it use.
 
 ## Installation
-1. Clone the project to a folder from terminal - `git clone https://github.com/Zh4rsiest/blex.git`
+1. Clone the project to a folder from terminal - `git clone https://github.com/Zh4rsiest/blexr.git`
 2. Cd in the `blexr` folder
 3. Create a database and import the `config/database.sql` file in it
 4. Edit the `config/database.sample.php` and `config/mail.sample.php` files and delete de `.sample` part
