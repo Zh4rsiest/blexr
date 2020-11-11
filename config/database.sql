@@ -72,7 +72,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`) VALUES
-(92, 'Blexr Admin', 'admin@blexr.com', '$argon2i$v=19$m=65536,t=4,p=1$ME9IbjlsSmZZTC9rZURxUA$e9tKoVj34R4XSrdupA84LCtCrT+ppICncuSRK1tdLaY$argon2i$v=19$m=65536,t=4,p=1$N0lDUHRwMHRkNExsUXUvTg$cqyStS6t0fx7A6DjMuEHPNA5qiszd4zzEwGmXg1Wp8I', 1),
+(1, 'Blexr Admin', 'admin@blexr.com', '$argon2i$v=19$m=65536,t=4,p=1$ME9IbjlsSmZZTC9rZURxUA$e9tKoVj34R4XSrdupA84LCtCrT+ppICncuSRK1tdLaY$argon2i$v=19$m=65536,t=4,p=1$N0lDUHRwMHRkNExsUXUvTg$cqyStS6t0fx7A6DjMuEHPNA5qiszd4zzEwGmXg1Wp8I', 1);
 
 -- --------------------------------------------------------
 
