@@ -59,7 +59,7 @@
                       <span v-else-if="request.status == 1">Approved</span>
                       <span v-else-if="request.status == 2">Denied</span>
                     </p>
-                    <button v-if="request.status == 0" @click="deleteRequest(request)" type="submit" class="mt-3 btn btn-danger">Delete</button>
+                    <button :disabled="request.status != 0" @click="deleteRequest(request)" type="submit" class="mt-3 btn btn-danger">Delete</button>
                   </div>
                 </div>
               </template>
@@ -135,6 +135,13 @@
         });
       },
       deleteRequest(request) {
+        // Employee cannot delete processed requests
+        if (request.status != 0) {
+          this.$toastr.e('This request can be deleted as it has already been processed');
+          return;
+        }
+
+
         axios.post('/request/delete_by_id', {id: request.id})
         .then((response) => {
           if (response.data.success) {

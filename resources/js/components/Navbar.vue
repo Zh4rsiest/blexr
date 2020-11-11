@@ -24,7 +24,7 @@
             <a :class="{active: currentRouteName == 'Requests'}" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Requests</a>
             <div class="dropdown-menu dropdown-menu-right">
               <router-link :class="{active: currentRouteName == 'request/add'}" class="dropdown-item" to="/request/add">Add Request</router-link>
-              <router-link :class="{active: currentRouteName == '/'}" class="dropdown-item" to="/">Pending requests</router-link>
+              <router-link :class="{active: currentRouteName == '/'}" class="dropdown-item" to="/">All</router-link>
             </div>
           </li>
 
