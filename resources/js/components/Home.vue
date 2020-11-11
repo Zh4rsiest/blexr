@@ -31,9 +31,11 @@
               </div>
             </div>
             <div v-else class="row my-3">
-              <h5>You don't have any employees added yet</h5>
-              <p class="mt-3">To add an employee, click on the button below or navigate in your menu to Administration->Add employee</p>
-              <button @click="$router.push('employee/add')" type="button" class="btn btn-primary mt-2">Add employee</button>
+              <div class="col-12">
+                <h5>You don't have any employees added yet</h5>
+                <p class="mt-3">To add an employee, click on the button below or navigate in your menu to Administration->Add employee</p>
+                <button @click="$router.push('employee/add')" type="button" class="btn btn-primary mt-2">Add employee</button>
+              </div>
             </div>
 
             <div v-if="loading" class="loader-wrapper">
