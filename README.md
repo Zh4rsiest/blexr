@@ -9,7 +9,7 @@ Also, since I was experimenting with webpack.config while creating the project, 
 
 I hope you enjoy the application and I also hope it shows how much effort I tried to put in the project with the time I had.
 
-##Structure
+## Structure
 I went for a Laravel like structure for my controllers, models, resources, public, config and route files.
 
 The `App` folder holds 3 things:
@@ -35,7 +35,7 @@ The `resources` folder holds all the source files for the compiling the main.js 
 The `routes` folder only has a web.php file in it, which holds all the routes that can be accessed on the site
 Every route is routed to `index.php` where the `Router` class detemines what type of route it is and which `Controller`'s what method should it use.
 
-##Installation
+## Installation
 1. Clone the project to a folder from terminal - `git clone https://github.com/Zh4rsiest/blex.git`
 2. Dump the composer's autoload file from the same folder - `composer dump-autoload`
 3. Install all dependencies with npm - `npm install`
