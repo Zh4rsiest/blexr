@@ -20,8 +20,8 @@
                 </div>
               </div>
             </div>
-            <div class="row mt-3">
-              <div v-for="user in users" :key="user.id" v-if="user.role_id != 1" class="col-12 col-md-4 mt-4">
+            <div v-if="users.length" class="row mt-3">
+              <div v-for="user in users" :key="user.id" class="col-12 col-md-4 mt-4">
                 <div class="col-12 user-wrapper py-3">
                   <p>Name: {{user.name}}</p>
                   <p>Id: {{user.id}}</p>
@@ -29,6 +29,11 @@
                   <button @click="selectUser(user)" type="button" class="btn btn-secondary mt-2">Check user</button>
                 </div>
               </div>
+            </div>
+            <div v-else class="row my-3">
+              <h5>You don't have any employees added yet</h5>
+              <p class="mt-3">To add an employee, click on the button below or navigate in your menu to Administration->Add employee</p>
+              <button @click="$router.push('employee/add')" type="button" class="btn btn-primary mt-2">Add employee</button>
             </div>
 
             <div v-if="loading" class="loader-wrapper">
@@ -58,7 +63,7 @@
               </template>
               <div v-else class="col-12 my-3">
                 <h5>You have no active requests</h5>
-                <p class="mt-3">To add a request, click on the button below or navigate in your menu to requests->add</p>
+                <p class="mt-3">To add a request, click on the button below or navigate in your menu to Requests->Add</p>
                 <button @click="$router.push('request/add')" type="button" class="btn btn-primary mt-2">Add request</button>
               </div>
             </div>
@@ -84,11 +89,12 @@
         return this.$store.state.user;
       }
     },
-    created() {
+    mounted() {
       if (user.role == 'admin') {
         axios.get('/users/all')
         .then((response) => {
-          this.users = response.data;
+          // Filter the repsonse array that it only return users that are not admins
+          this.users = response.data.filter(user => user.role_id != 1);
         });
       } else {
         axios.get('/request/logged_in_users_requests')
