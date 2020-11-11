@@ -64,7 +64,7 @@ CREATE TABLE `users` (
   `name` varchar(150) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role_id` int(11) NOT NULL DEFAULT '2'
+  `role_id` int(1) NOT NULL DEFAULT '2'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -82,11 +82,18 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `role_id`) VALUES
 
 CREATE TABLE `users_tasks` (
   `user_id` int(11) NOT NULL,
-  `microsoft_office_license` int(11) NOT NULL DEFAULT '0',
-  `email_access` int(11) NOT NULL DEFAULT '0',
-  `git_repository` int(11) NOT NULL DEFAULT '0',
-  `jira_access` int(11) NOT NULL DEFAULT '0'
+  `microsoft_office_license` int(1) NOT NULL DEFAULT '0',
+  `email_access` int(1) NOT NULL DEFAULT '0',
+  `git_repository` int(1) NOT NULL DEFAULT '0',
+  `jira_access` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users_tasks` (`user_id`, `microsoft_office_license`, `email_access`, `git_repository`, `jira_access`) VALUES
+(1, 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
