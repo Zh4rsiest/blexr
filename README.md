@@ -39,7 +39,7 @@ Every route is routed to `index.php` where the `Router` class detemines what typ
 1. Clone the project to a folder from terminal - `git clone https://github.com/Zh4rsiest/blexr.git`
 2. Cd in the `blexr` folder
 3. Create a database and import the `config/database.sql` file in it
-4. Edit the `config/database.sample.php` and `config/mail.sample.php` files and delete de `.sample` part
+4. Edit the `config/database.sample.php`, `config/mail.sample.php` and `config/config.sample.php` files and delete de `.sample` part
 5. Run `composer install` to install dependencies
 6. Dump the composer's autoload file from the same folder - `composer dump-autoload`
 7. Install all dependencies with npm - `npm install`
