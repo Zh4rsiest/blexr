@@ -21,7 +21,11 @@
             </div>
           </li>
           <li v-else class="nav-item">
-            <router-link class="nav-link" :class="{active: currentRouteName == 'request/add'}" to="/request/add">Add request</router-link>
+            <a :class="{active: currentRouteName == 'administration'}" class="nav-link  dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration</a>
+            <div class="dropdown-menu dropdown-menu-right">
+              <router-link :class="{active: currentRouteName == 'request/add'}" class="dropdown-item" to="/request/add">Add Request</router-link>
+              <router-link :class="{active: currentRouteName == '/'}" class="dropdown-item" to="/">Peding requests</router-link>
+            </div>
           </li>
 
           <li class="nav-item">
