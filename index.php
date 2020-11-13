@@ -1,7 +1,6 @@
 <?php
 require("vendor/autoload.php");
 require("routes/web.php");
-use App\Controllers\AuthController as AuthController;
 use App\Models\Auth as Auth;
 
 $uri = ltrim($_SERVER["REQUEST_URI"], "/");
